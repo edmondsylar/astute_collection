@@ -75,17 +75,4 @@ class UserModel:
         update = "SELECT * FROM t_sdnupdatecheck"
         self.cur.execute(update)
         mon = self.cur.fetchall()
-        return """
-	<html>
-	<head> <title>Admin Monitor Dashboard</title>
-	</head>
-	<body>
-	<h1> Welcome Admin Edmond</h1>
-	<p>You have {} records in the table</p><br>
-	{}
-	<br><br><br><br><br>
-	&copy Copyright Astute Server 2019
-
-	</body>
-""".format(len(mon), mon)
-
+        return "{} Records \n {}".format(len(mon), mon)

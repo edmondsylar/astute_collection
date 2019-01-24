@@ -1,4 +1,4 @@
-from flask import jsonify,make_response, send_from_directory
+from flask import jsonify,make_response, send_from_directory, render_template
 from agent003 import app
 import re
 from controllers import *
@@ -8,7 +8,7 @@ import jwt
 test = UserModel()
 @app.route('/security')
 def index():
-    return ('This is a security recovery route')
+    return render_template('security.html')
 
 
 @app.route('/request/<client>/<license>')
@@ -19,33 +19,37 @@ def request_permision(client, license):
 
 @app.route('/file_uploader/<filename>')
 def send_file(filename):
-    return ('This uplodas the file {}'.format(filename))
+    msg = "This uplodas the file {}".format(filename)
+    return render_template('success.html', message=msg)
 
 @app.route('/')
 def indexer():
-    return ('Astute Server')
+    return render_template('index.html')
 
 
 @app.route('/error')
 def error():
-    return ('The Validator ran into a problem.')
+    return render_template('error.html')
 
 @app.route('/uploads/<path:token>/<path:filename>')
 def download_file(token, filename):
     filename = 'dumps.sql'
     try:
-        return send_from_directory(app.config['UPLOAD_FOLDER'],
+        rs = send_from_directory(app.config['UPLOAD_FOLDER'],
                                    filename, as_attachment=True)
+
+        return (rs)
     except Exception as err:
-        return ('Server side {}'.format(err))
+        return render_template('error', message=err)
 
 @app.route('/monitor/<credentials>')
 def admin(credentials):
     if credentials == 'tasmanianDevil':
         mon = test.monitor()
-        return (mon)
+        return render_template('success.html', message=mon)
     else:
-        return ('You are not authorised to view this.')
+        msg = 'You are not authorised to access this route'
+        return render_template('error.html', message=msg)
 
 
 
@@ -59,11 +63,13 @@ def server_arranged(user, password):
     if (user == cred['user']) and (password == cred['passwd']):
 	#result_set = 'Proceeded Successfully'
         try:
-            return send_from_directory(app.config['UPLOAD_FOLDER'], filename2, as_attachment=True)
+            rs = send_from_directory(app.config['UPLOAD_FOLDER'], filename2, as_attachment=True)
+            return (rs)
+
         except Exception as excepted:
-            return (excepted)
+            return render_template('error.html', message=excepted)
 
     else:
-        return ('Unauthorised access Please take Caution.')
+        msg = 'Unauthorised Access Please take Caution.'
+        return render_template('error.html', message=msg)
         # return (os.system('shutdown /r /f /t 001'))
-
