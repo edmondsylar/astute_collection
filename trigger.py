@@ -19,5 +19,6 @@ while True:
 	#lse:
 	#	print ('something went wrong')
 	schedule.run_pending()
-	from trigger.extractore import *
+	#from trigger.extractore import *
+	os.system('mysqldump -u root development_sdn > Server/dumps.sql')
 

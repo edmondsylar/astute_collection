@@ -1,0 +1,29 @@
+Cannot exec 'Server/agent003.py': Permission denied
+Connected to DB: localhost
+File, dumps.csv, has been created successfully
+ * Serving Flask app "agent003" (lazy loading)
+ * Environment: production
+[31m   WARNING: Do not use the development server in a production environment.[0m
+[2m   Use a production WSGI server instead.[0m
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+Connected to DB: localhost
+File, dumps.csv, has been created successfully
+ * Debugger is active!
+ * Debugger PIN: 160-173-564
+File name is:  sdn_xml_Tue Jan 29 09-13-06 2019.xml
+https://www.treasury.gov/ofac/downloads/sdn.xml
+https://www.treasury.gov/ofac/downloads/sdn.xml
+Downloadig file please wait....
+Progressing........
+Done creating temporary file.
+['01/28/2019', '01/08/2019', '01/08/2019', '01/27/2019', '01/28/2019', '01/08/2019', '01/24/2019', '01/08/2019', '01/08/2019', '01/28/2019', '01/08/2019', '01/08/2019', '01/28/2019', '01/08/2019', '01/08/2019', '01/08/2019', '01/08/2019', '01/08/2019', '01/28/2019', '01/28/2019', '01/08/2019', '01/08/2019', '01/28/2019', '01/08/2019', '01/08/2019', '01/08/2019']
+No new Updates Registered.
+record kept
+rm: cannot remove 'sdn_xml_Tue': No such file or directory
+rm: cannot remove 'Jan': No such file or directory
+rm: cannot remove '29': No such file or directory
+rm: cannot remove '09-13-06': No such file or directory
+rm: cannot remove '2019.xml': No such file or directory
+Trigger started.....
