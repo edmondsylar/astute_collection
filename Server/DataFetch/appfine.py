@@ -121,10 +121,14 @@ def getter(*args):
 		check = xmltodict.parse(fd.read())
 
 	pub_date = check['sdnList']['publshInformation']['Publish_Date']
+	rec_count = check['sdnList']['publshInformation']['Record_Count']
 
 	conn = pymysql.connect(host='127.0.0.1', user='root', passwd=None, db='development_sdn')
+	# conn = pymysql.connect(host='192.168.8.5', user='client', passwd=None, db='development_sdn')
 	cur = conn.cursor()
+	cur2 = conn.cursor()
 	cur.execute('SELECT `sdnPublishDate` FROM `t_sdnupdatecheck`')
+	cur.execute('SELECT noOfSdnRecordsFetched FROM `t_sdnfetchedinformation')
 
 	dumps = []
 	for dates in cur:
@@ -132,9 +136,16 @@ def getter(*args):
 			str(each)
 		dumps.append(each)
 
+	recs = []
+	for data in cur2:
+		for each in data:
+			str(each)
+		recs.append(each)
+
 	print (dumps)
+	print (recs)
 	# time.sleep(4)
-	if pub_date in dumps:
+	if pub_date in dumps and rec_count in recs:
 		print ('No new Updates Registered.')
 		cur.execute("INSERT INTO `t_sdnupdatecheck` (`sdnPublishDate`) VALUES ('{}')".format(pub_date))
 		conn.commit()
