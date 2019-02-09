@@ -128,7 +128,7 @@ def getter(*args):
 	cur = conn.cursor()
 	cur2 = conn.cursor()
 	cur.execute('SELECT `sdnPublishDate` FROM `t_sdnupdatecheck`')
-	cur.execute('SELECT noOfSdnRecordsFetched FROM `t_sdnfetchedinformation')
+	cur.execute('SELECT `noOfSdnRecordsFetched` FROM `t_sdnfetchedinformation`')
 
 	dumps = []
 	for dates in cur:
